@@ -1,0 +1,7 @@
+[mysqld]
+skip-host-cache
+skip-name-resolve
+general-log=true
+general-log-file=/var/log/mysql/query.log
+slow-query-log=true
+slow-query-log-file=/var/log/mysql/slow_query.log

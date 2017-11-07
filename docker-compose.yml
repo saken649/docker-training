@@ -1,0 +1,26 @@
+version: '2'
+services:
+  app_db:
+    build: ./mysql/
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./logs/:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+    privileged: true
+    command: /sbin/init
+  app_container:
+    container_name: app_container
+    build: ./php/
+    expose:
+      - '9000'
+      - '25'
+    ports:
+      - '80:80'
+    volumes:
+      - ./src/:/var/www/html
+    links:
+      - app_db
+    privileged: true
+    command: /sbin/init
